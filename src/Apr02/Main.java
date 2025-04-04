@@ -14,16 +14,23 @@ public class Main {
 //                sc.nextLine();
             }
             br.close();
+            br.readLine();
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
             System.out.println("Failed to read");
         }
 
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("src/Apr02/vince2.txt"));
+        // try-with-resources
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/Apr02/vince.txt"))) {
+            for (int i = 0; i <= 10_008; i++) {
+                bw.write(i + "");
+                bw.newLine();
+            }
+            return;
         } catch (IOException e) {
             System.out.println("Error while writing " + e.getClass());
         }
+        System.out.println("Program has ended.");
     }
 }
